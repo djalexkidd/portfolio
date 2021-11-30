@@ -1,3 +1,4 @@
+/* Aucune bordure */
 *, ::before, ::after {
     margin: 0;
     padding: 0;
@@ -5,50 +6,71 @@
 
 /*POLICES*/
 @font-face {
-    font-family: 'theblacklist';
-    src : url('../fonts/theblacklist.ttf') format('truetype');
+    font-family: 'nebasneue';
+    src : url('../fonts/BebasNeue-Regular.ttf') format('truetype');
 }
 
+/* Définit l'image d'arrière-plan de la page */
 body {
-    background-image: url("../images/future.jpg");
+    background-image: url("../images/grid.png");
     background-size: cover;
-    background-color: #ccc;
+    background-color: #000;
+    color: #fff;
 }
 
+/* Barre de navigation */
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
-    font-family: "Arial", sans-serif;
-  }
-  
+    font-family: nebasneue, sans-serif;
+    box-shadow: 0 2px 8px #494949;
+}
+
+/* Boutons de navigation à droite */
 li {
     float: right;
 }
-  
+
+/* Boutons de navigation */
 li a {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-size: 30px;
 }
-  
+
+/* Couleur du bouton de navigation quand il est survolé */
 li a:hover {
     background-color: #111;
 }
 
+/* Couleur du bouton de navigation de la "page actuelle" */
 .active {
     background-color: #04AA6D;
 }
 
+/* Titre du site à gauche de la barre de navigation */
 ul p {
     display: inline-block;
-    text-align:center;
-    color: #fff;
-    padding-top: 6px;
-    padding-left: 12px;
+    text-align: center;
+    padding-top: 16px;
+    padding-left: 16px;
     font-size: 28px;
+}
+
+/* Espacement entre la barre de navigation et le contenu */
+main {
+    padding-top: 20px;
+}
+
+/* Image de présentation */
+img {
+    float: left;
+    padding-right: 50px;
+    padding-left: 10px;
 }
