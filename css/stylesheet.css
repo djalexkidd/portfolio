@@ -95,14 +95,19 @@ footer {
     font-size: 20px;
 }
 
+/* [GRILLE DE LA PAGE PROJETS] */
+
+/* Bordures pour les éléments de la grille */
 .project {
     border: solid;
 }
 
+/* Règle la taille de l'image */
 .projectimg {
     width: 250px;
 }
 
+/* Nom des projets */
 .projectname {
     font-size: 37px;
     text-align: center;
@@ -114,4 +119,10 @@ footer {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
+}
+
+/* Hyperliens pour les projets */
+a:link, a:visited {
+    text-decoration: none;
+    color: #fff;
 }
