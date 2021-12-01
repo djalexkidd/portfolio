@@ -69,7 +69,6 @@ ul p {
 
 /* Espacement entre la barre de navigation et le contenu */
 main {
-    padding-top: 20px;
     font-family: dmsans, sans-serif;
     font-size: 24px;
 }
@@ -79,6 +78,10 @@ main {
     float: left;
     padding-right: 50px;
     padding-left: 10px;
+}
+
+.espace {
+    margin: 12px 0;
 }
 
 /* Bas de page */
@@ -96,6 +99,11 @@ footer {
 }
 
 /* [GRILLE DE LA PAGE PROJETS] */
+
+.centered {
+    display: flex;
+    justify-content: center;
+}
 
 /* Bordures pour les éléments de la grille */
 .project {
@@ -116,8 +124,8 @@ footer {
 .container {
     position: absolute;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
     grid-auto-rows: minmax(100px, auto);
 }
 
@@ -126,3 +134,12 @@ a:link, a:visited {
     text-decoration: none;
     color: #fff;
 }
+
+@media (min-width: 600px) {
+    .container { grid-template-columns: repeat(2, 1fr); }
+  }
+
+@media (min-width: 900px) {
+    .container { grid-template-columns: repeat(3, 1fr); }
+}
+
