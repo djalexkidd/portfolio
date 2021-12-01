@@ -75,7 +75,7 @@ main {
 }
 
 /* Image de présentation */
-img {
+.photo {
     float: left;
     padding-right: 50px;
     padding-left: 10px;
@@ -93,4 +93,24 @@ footer {
     height: 35px;
     font-family: dmsans, sans-serif;
     font-size: 20px;
+}
+
+.project {
+    border: solid;
+}
+
+.projectimg {
+    width: 250px;
+}
+
+.projectname {
+    font-size: 37px;
+}
+
+.container {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
 }
