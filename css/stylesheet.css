@@ -130,7 +130,7 @@ footer {
 }
 
 /* Hyperliens pour les projets */
-a:link, a:visited {
+.nodecoration:link, .nodecoration:visited {
     text-decoration: none;
     color: #fff;
 }
