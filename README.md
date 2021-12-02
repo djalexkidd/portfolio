@@ -14,4 +14,4 @@ Le formulaire de contact utilise JS uniquement pour le redimentionnement automat
 
 Le site est hébergé avec GitHub Pages.
 
-<a href="#">Lien du site</a>
+<a href="https://djalexkidd.github.io/portfolio">Lien du site</a>
