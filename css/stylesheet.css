@@ -45,7 +45,7 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 /* Couleur du bouton de navigation quand il est survolé */
@@ -64,7 +64,7 @@ ul p {
     text-align: center;
     padding-top: 16px;
     padding-left: 16px;
-    font-size: 28px;
+    font-size: 20px;
 }
 
 /* Espacement entre la barre de navigation et le contenu */
@@ -138,7 +138,9 @@ footer {
 
 @media (min-width: 600px) {
     .container { grid-template-columns: repeat(2, 1fr); }
-  }
+    li a { font-size: 30px; }
+    ul p { font-size: 28px; }
+}
 
 @media (min-width: 900px) {
     .container { grid-template-columns: repeat(3, 1fr); }
