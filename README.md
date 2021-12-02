@@ -2,7 +2,7 @@
 
 ## Présentation
 
-Voici mon portfolio pour l'IMTS à rendre pour Jeudi 6 Décembre 2021.
+Voici mon portfolio pour l'IMTS à rendre pour Lundi 6 Décembre 2021.
 
 Pour le formulaire de contact j'ai utilisé l'API de <a href="https://formspree.io">Formspree</a>.
 
