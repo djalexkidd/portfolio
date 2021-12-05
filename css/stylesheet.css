@@ -100,9 +100,13 @@ footer {
 
 .social {
     position: absolute;
-    display: inline-block;
     left: 0;
-    margin-bottom: 5rem;
+    width: 30px;
+}
+
+.social2 {
+    position: absolute;
+    left: 35px;
     width: 30px;
 }
 
