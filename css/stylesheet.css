@@ -73,6 +73,10 @@ main {
     font-size: 24px;
 }
 
+.myself {
+    margin-right: 15%;
+}
+
 /* Image de présentation */
 .photo {
     float: left;
