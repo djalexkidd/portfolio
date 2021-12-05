@@ -73,8 +73,10 @@ main {
     font-size: 24px;
 }
 
+/* Paragraphe pour me présenter sur la page d'accueil */
 .myself {
     margin-right: 15%;
+    padding-bottom: 50px;
 }
 
 /* Image de présentation */
@@ -102,12 +104,14 @@ footer {
     font-size: 20px;
 }
 
+/* Icône GitHub */
 .social {
     position: absolute;
     left: 0;
     width: 30px;
 }
 
+/* Icône LinkedIn */
 .social2 {
     position: absolute;
     left: 35px;
@@ -152,6 +156,7 @@ footer {
     color: #fff;
 }
 
+/* Ajuste les dimentions de la grille de projets et du texte de la navbar pour les résolutions inférieures */
 @media (min-width: 600px) {
     .container { grid-template-columns: repeat(2, 1fr); }
     li a { font-size: 30px; }
@@ -162,14 +167,19 @@ footer {
     .container { grid-template-columns: repeat(3, 1fr); }
 }
 
+/* [FORMULAIRE DE CONTACT] */
+
+/* Ajuste le formulaire */
 form {
     padding-left: 10%;
 }
 
+/* Zone de texte de l'e-mail */
 input {
     width: 80%;
 }
 
+/* Zone de texte du message */
 textarea {
     resize: none;
     overflow: hidden;
@@ -178,6 +188,7 @@ textarea {
     max-height: 400px;
 }
 
+/* Bouton envoyer */
 button {
     margin: 50px 0;
     width: 100px;
