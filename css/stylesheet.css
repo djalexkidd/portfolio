@@ -98,6 +98,14 @@ footer {
     font-size: 20px;
 }
 
+.social {
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    margin-bottom: 5rem;
+    width: 30px;
+}
+
 /* [GRILLE DE LA PAGE PROJETS] */
 
 .centered {
