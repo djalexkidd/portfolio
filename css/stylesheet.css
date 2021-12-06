@@ -82,8 +82,10 @@ main {
 /* Image de présentation */
 .photo {
     float: left;
-    padding-right: 50px;
-    padding-left: 10px;
+    margin-left: 10px;
+    margin-right: 50px;
+    border: solid #0000b2;
+    border-radius: 30px;
 }
 
 .espace {
