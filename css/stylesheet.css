@@ -16,9 +16,7 @@
 
 /* Définit l'image d'arrière-plan de la page */
 body {
-    background-image: url("../images/grid.png");
-    background-size: cover;
-    background-color: #000;
+    background-color: #181818;
     color: #fff;
 }
 
