@@ -2,6 +2,7 @@ const htmlnode = document.querySelector("main")
 const navnode = document.querySelector("ul")
 const footernode = document.querySelector("footer")
 const projectnode = document.querySelectorAll(".projectname")
+const gridbackground = document.querySelector(".scrolling-image-container")
 
 var allowedKeys = {
     37: 'left',
@@ -36,6 +37,7 @@ function activateCheats() {
     htmlnode.style.fontFamily = "vcr"
     navnode.style.fontFamily = "vcr"
     footernode.style.fontFamily = "vcr"
+    gridbackground.style.display = "block"
 
     for(let i = 0; i < projectnode.length; i++) {
       projectnode[i].style.fontSize = "28px"

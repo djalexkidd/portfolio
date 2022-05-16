@@ -208,3 +208,28 @@ button {
 .retromode {
     font-family: vcr;
 }
+
+.scrolling-image-container {
+    overflow: hidden;
+    display: none;
+}
+
+.scrolling-image {
+    background: url("../images/grid.png") repeat-x;
+    height: 1620px;
+    width: 7680px;
+    animation: slide 3s linear infinite;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+@keyframes slide {
+    0% {
+      transform: translate(0);
+    }
+    100% {
+      transform: translate(-1920px); /* The image width */
+    }
+}
