@@ -13,6 +13,10 @@
     font-family: 'dmsans';
     src : url('../fonts/DMSans-Regular.ttf') format('truetype')
 }
+@font-face {
+    font-family: 'vcr';
+    src : url('../fonts/vcr.ttf') format('truetype');
+}
 
 /* Définit l'image d'arrière-plan de la page */
 body {
@@ -163,8 +167,12 @@ footer {
     ul p { font-size: 28px; }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 850px) {
     .container { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1440px) {
+    .container { grid-template-columns: repeat(5, 1fr); }
 }
 
 /* [FORMULAIRE DE CONTACT] */
@@ -193,4 +201,10 @@ button {
     margin: 50px 0;
     width: 100px;
     height: 50px;
+}
+
+/* [RETRO MODE EASTER EGG] */
+
+.retromode {
+    font-family: vcr;
 }
