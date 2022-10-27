@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+    <!-- Contenu de la page -->
+    <main>
+        <h1 class="espace">Formulaire de contact</h1>
+        <form action="https://formspree.io/f/mvolpldk" method="POST">
+            <label>
+                Votre email:
+                <br>
+                <input type="email" name="_replyto">
+            </label>
+            <br>
+            <label>
+                Votre message:
+                <br>
+                <textarea oninput="auto_grow(this)" name="message"></textarea>
+            </label>
+            <br>
+            <!-- your other form fields go here -->
+            <button type="submit">Envoyer</button>
+        </form>
+<%- include('partials/footer') %>
