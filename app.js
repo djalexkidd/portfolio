@@ -32,6 +32,7 @@ function getProjects() {
 // Page d'accueil
 app.get("/", (req, res) => {
     res.render("index.ejs", {
+        title: "Accueil",
         currentPage3: false,
         currentPage2: false,
         currentPage1: true,
@@ -43,6 +44,7 @@ app.get("/", (req, res) => {
 // Page des projets
 app.get("/projets", async (req, res) => {
     res.render("projets.ejs", {
+        title: "Projets",
         currentPage3: false,
         currentPage2: true,
         currentPage1: false,
@@ -54,6 +56,7 @@ app.get("/projets", async (req, res) => {
 // Page de contact
 app.get("/contact", (req, res) => {
     res.render("contact.ejs", {
+        title: "Contact",
         currentPage3: true,
         currentPage2: false,
         currentPage1: false
