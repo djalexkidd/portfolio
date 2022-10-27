@@ -8,12 +8,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.set('view engine', 'ejs');
 
+const avatarUrl = gravatar.url('alexpyr@outlook.fr', {s: '200'}, true);
+
 // Page d'accueil
 app.get("/", (req, res) => {
     res.render("index.ejs", {
         currentPage3: false,
         currentPage2: false,
-        currentPage1: true
+        currentPage1: true,
+        avatar: avatarUrl
     });
   }
 );
