@@ -8,12 +8,14 @@
     <section class="centered">
         <!-- Grille des projets -->
         <div class="container">
-            <a class="nodecoration" href="https://github.com/djalexkidd/kiyus-revenge" target="_blank">
-                <div class="project">
-                    <img class="projectimg" src="images/project1.png" alt="Capture d'écran de Kiyu's Revenge" />
-                    <p class="projectname">Kiyu's Revenge</p>
-                </div>
-            </a>
+            <% for(let i = 0; i < list.length; i++) { %>
+                <a class="nodecoration" href="<%= list[i].git_url %>" target="_blank">
+                    <div class="project">
+                        <img class="projectimg" src="<%= list[i].image %>" alt="Capture d'écran de <%= list[i].name %>" />
+                        <p class="projectname"><%= list[i].name %></p>
+                    </div>
+                </a>
+            <% } %>
     
             <a class="nodecoration" href="https://github.com/djalexkidd/wesh-bouee" target="_blank">
                 <div class="project">
