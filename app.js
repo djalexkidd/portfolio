@@ -41,7 +41,7 @@ function getProjects() {
 };
 
 function getGame(demand) {
-    const result = knex.select().table('projets').where({ id: demand });
+    const result = knex.select().table('projets').where({ id: demand }).join('jeux', 'projets.name', '=', 'jeux.name');
 
     return result.then(function(rows){
         return rows;
@@ -107,6 +107,7 @@ app.get("/projets", async (req, res) => {
 
 app.get("/projets/:id", async (req, res) => {
     const result = await getGame(req.params.id)
+    try {
     res.render("jeu.ejs", {
         title: result[0].name,
         currentPage3: false,
@@ -114,6 +115,10 @@ app.get("/projets/:id", async (req, res) => {
         currentPage1: false,
         game: result
     });
+    } catch {
+        res.status(404);
+        res.send("Jeu introuvable");
+    }
   }
 );
 
@@ -157,6 +162,11 @@ app.get('/logout', (req, res) => {
     res.clearCookie("token");
     res.redirect('/login');
 });
+
+app.get('*', (req, res) => {
+    res.status(404);
+    res.send("Page introuvable");
+})
 
 // Création d'un nouveau projet
 app.post("/newproject", ensureAuthenticated, (req, res, next) => {

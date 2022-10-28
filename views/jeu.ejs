@@ -2,7 +2,7 @@
     <!-- Contenu de la page -->
     <main class="myself">
         <!-- Image de présentation -->
-        <img class="gameicon" src="<%= game[0].icon_url %>" alt="Îcone de Kiyu's Revenge" />
+        <img class="gameicon" src="<%= game[0].icon_url %>" alt="Icône de <%= game[0].name %>" />
         <!-- Paragraphe à droite de l'image -->
         <h1 class="espace gametitle"><%= game[0].name %></h1>
         <p><%= game[0].description %></p>
@@ -15,14 +15,15 @@
 
         <section class="centered">
             <div class="screenshots">
-                <img src="images/screenshots/kiyu1.png">
-                <img src="images/screenshots/kiyu2.png">
-
-                <video autoplay loop controls>
-                    <source src="videos/kiyu.mp4" type="video/mp4">
-                </video>
+                <img src="<%= game[0].screenshot1_url %>">
+                <img src="<%= game[0].screenshot2_url %>">
+                <img src="<%= game[0].screenshot3_url %>">
             </div>
         </section>
+
+        <div class="scrolling-image-container">
+            <div class="scrolling-image"></div>
+        </div>
         
     </main>
 <%- include('partials/footer') %>
