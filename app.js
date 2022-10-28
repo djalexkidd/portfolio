@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const gravatar = require('gravatar');
 const bcrypt = require ("bcrypt");
+const cookieParser = require('cookie-parser')
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set('view engine', 'ejs');
 app.use(cors());
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 const avatarUrl = gravatar.url('alexpyr@outlook.fr', {s: '200'}, true);
 
@@ -35,6 +37,18 @@ function getProjects() {
 
     return result.then(function(rows){
         return rows;
+    })
+};
+
+function ensureAuthenticated(req, res, next) {
+    const token = req.cookies.token
+    jwt.verify(token, SECRET, (error, decodedToken) => {
+       if(error){
+        console.log(error);
+            res.redirect("/login");
+       }else{
+            next();
+       }
     })
 };
 
@@ -127,6 +141,7 @@ app.post("/login", (req, res, next) => {
              }else{
                 return jwt.sign({user}, SECRET, {expiresIn: "1h"}, (error, token) => {
                    console.log("Successful login from " + req.body.username + " at " + req.ip);
+                   res.cookie("token", token);
                    res.status(200).json({token})
                 })
              }
@@ -149,6 +164,10 @@ app.get("/verify", (req, res, next) => {
           })
        }
     })
+});
+
+app.get('/admin', ensureAuthenticated, function(req, res) {
+    res.send("zizi");
 });
 
 // app.post("/register", (request, response, next) => {
