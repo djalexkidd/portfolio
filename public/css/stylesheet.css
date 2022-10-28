@@ -291,7 +291,8 @@ button {
     color: white;
 }
 
-video {
+.scr {
+    width: 480px;
     height: 270px;
 }
 
