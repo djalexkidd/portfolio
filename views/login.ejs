@@ -10,6 +10,8 @@
         <label for="2">Mot de passe:</label>
         <input type="password" name="password" id="2" required>
         <br>
+        <div class="g-recaptcha" data-sitekey="<%= captchaSite %>"></div>
+        <br>
         <input class="sendform" type="submit" value="Entrer dans la matrice" />
     </form>
 
@@ -18,6 +20,8 @@
     <div class="scrolling-image-container">
         <div class="scrolling-image"></div>
     </div>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
 </main>
 <%- include('partials/footer') %>

@@ -52,6 +52,25 @@ function ensureAuthenticated(req, res, next) {
     })
 };
 
+async function verifyCaptcha(req, res, next) {
+    const APICALL = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_SECRET_KEY}&response=${req.body['g-recaptcha-response']}`
+    const reponse = await fetch(APICALL)
+    const body = await reponse.json()
+
+    if (body.success !== undefined && !body.success) {
+        res.render("login.ejs", {
+            title: "Connexion",
+            currentPage3: false,
+            currentPage2: false,
+            currentPage1: false,
+            message: "Le CAPTCHA n'a pas été validé.",
+            captchaSite: process.env.CAPTCHA_SITE_KEY
+        });
+    } else {
+        next();
+    }
+};
+
 // Page d'accueil
 app.get("/", (req, res) => {
     res.render("index.ejs", {
@@ -94,7 +113,8 @@ app.get("/login", (req, res) => {
         currentPage3: false,
         currentPage2: false,
         currentPage1: false,
-        message: ""
+        message: "",
+        captchaSite: process.env.CAPTCHA_SITE_KEY
     });
   }
 );
@@ -111,7 +131,7 @@ app.post("/newproject", (req, res, next) => {
     .catch(error => next(error))
 });
 
-app.post("/login", (req, res, next) => {
+app.post("/login", verifyCaptcha, (req, res, next) => {
     knex("users")
     .where({username: req.body.username})
     .first()
@@ -123,7 +143,8 @@ app.post("/login", (req, res, next) => {
             currentPage3: false,
             currentPage2: false,
             currentPage1: false,
-            message: "Le nom d'utilisateur ou le mot de passe est incorrect."
+            message: "Le nom d'utilisateur ou le mot de passe est incorrect.",
+            captchaSite: process.env.CAPTCHA_SITE_KEY
         });
        }else{
           return bcrypt
@@ -136,13 +157,14 @@ app.post("/login", (req, res, next) => {
                     currentPage3: false,
                     currentPage2: false,
                     currentPage1: false,
-                    message: "Le nom d'utilisateur ou le mot de passe est incorrect."
+                    message: "Le nom d'utilisateur ou le mot de passe est incorrect.",
+                    captchaSite: process.env.CAPTCHA_SITE_KEY
                 });
              }else{
                 return jwt.sign({user}, SECRET, {expiresIn: "1h"}, (error, token) => {
                    console.log("Successful login from " + req.body.username + " at " + req.ip);
                    res.cookie("token", token);
-                   res.status(200).json({token})
+                   res.redirect("/admin");
                 })
              }
           })
