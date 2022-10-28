@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+<!-- Contenu de la page -->
+<main>
+    <!-- Paragraphe de présentation -->
+    <h1 class="espace">Administration du site</h1>
+    <form action="logout">
+        <input class="sendform" type="submit" value="Déconnexion" />
+    </form>
+
+    <h2 class="espace">Ajouter un nouveau projet</h2>
+
+    <form action="newproject" method="post">
+        <label for="1">Nom:</label>
+        <input name="name" id="1" required>
+        <br>
+        <label for="2">URL de l'image:</label>
+        <input name="image" id="2" required>
+        <br>
+        <label for="3">Lien du code source:</label>
+        <input name="git_url" id="3" required>
+        <br>
+        <input class="sendform" type="submit" value="Créer" />
+    </form>
+
+    <p><%= message %></p>
+
+    <div class="scrolling-image-container">
+        <div class="scrolling-image"></div>
+    </div>
+    
+</main>
+<%- include('partials/footer') %>

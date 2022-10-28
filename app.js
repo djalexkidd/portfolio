@@ -40,18 +40,20 @@ function getProjects() {
     })
 };
 
+// Middleware pour vérifier si l'utilisateur est connecté
 function ensureAuthenticated(req, res, next) {
     const token = req.cookies.token
     jwt.verify(token, SECRET, (error, decodedToken) => {
        if(error){
-        console.log(error);
-            res.redirect("/login");
+            res.status(403);
+            res.send('Forbidden');
        }else{
             next();
        }
     })
 };
 
+// Middleware pour vérifier le CAPTCHA
 async function verifyCaptcha(req, res, next) {
     const APICALL = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_SECRET_KEY}&response=${req.body['g-recaptcha-response']}`
     const reponse = await fetch(APICALL)
@@ -119,18 +121,43 @@ app.get("/login", (req, res) => {
   }
 );
 
-app.post("/newproject", (req, res, next) => {
+// Page d'administration
+app.get('/admin', ensureAuthenticated, function(req, res) {
+    res.render("admin.ejs", {
+        title: "Administration",
+        currentPage3: false,
+        currentPage2: false,
+        currentPage1: false,
+        message: ""
+    });
+});
+
+// Déconnexion
+app.get('/logout', (req, res) => {
+    res.clearCookie("token");
+    res.redirect('/login');
+});
+
+// Création d'un nouveau projet
+app.post("/newproject", ensureAuthenticated, (req, res, next) => {
     knex("projets").insert({
        name: req.body.name,
        image: req.body.image,
        git_url: req.body.git_url
     })
-    .then(users => {
-       res.json(users[0])
+    .then(() => {
+        res.render("admin.ejs", {
+            title: "Administration",
+            currentPage3: false,
+            currentPage2: false,
+            currentPage1: false,
+            message: req.body.name + " a été ajouté avec succès."
+        });
     })
     .catch(error => next(error))
 });
 
+// Route pour la connexion
 app.post("/login", verifyCaptcha, (req, res, next) => {
     knex("users")
     .where({username: req.body.username})
@@ -170,26 +197,6 @@ app.post("/login", verifyCaptcha, (req, res, next) => {
           })
        }
     })
-});
-
-app.get("/verify", (req, res, next) => {
-    const token = req.headers.authorization
-    jwt.verify(token, SECRET, (error, decodedToken) => {
-       if(error){
-          res.status(401).json({
-             message: "Unauthorized Access!"
-          })
-       }else{
-          res.status(200).json({
-             id: decodedToken.id,
-             username: decodedToken.username
-          })
-       }
-    })
-});
-
-app.get('/admin', ensureAuthenticated, function(req, res) {
-    res.send("zizi");
 });
 
 // app.post("/register", (request, response, next) => {
