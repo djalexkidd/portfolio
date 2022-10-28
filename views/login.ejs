@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+<!-- Contenu de la page -->
+<main>
+    <!-- Paragraphe de présentation -->
+    <h1 class="espace">Connexion</h1>
+    <form class="login" id="form" action="login" method="post">
+        <label for="1">Utilisateur:</label>
+        <input name="username" id="1" required>
+        <br>
+        <label for="2">Mot de passe:</label>
+        <input type="password" name="password" id="2" required>
+        <br>
+        <input class="sendform" type="submit" value="Entrer dans la matrice" />
+    </form>
+
+    <p><%= message %></p>
+
+    <div class="scrolling-image-container">
+        <div class="scrolling-image"></div>
+    </div>
+    
+</main>
+<%- include('partials/footer') %>

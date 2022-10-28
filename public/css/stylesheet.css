@@ -183,7 +183,7 @@ form {
 }
 
 /* Zone de texte de l'e-mail */
-input {
+.name {
     width: 80%;
 }
 
@@ -232,4 +232,11 @@ button {
     100% {
       transform: translate(-1920px); /* The image width */
     }
+}
+
+/* [FORMULAIRE DE CONNEXION] */
+
+@media (max-width: 600px) {
+    .login {display: flex; flex-direction: column;}
+    form {padding-left: 0%;}
 }
