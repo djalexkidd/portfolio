@@ -102,8 +102,8 @@ app.post("/login", (req, res, next) => {
     .where({username: req.body.username})
     .first()
     .then(user => {
-        console.log(user)
        if(!user){
+        console.log("Failed login from " + req.body.username + " at " + req.ip);
         res.render("login.ejs", {
             title: "Connexion",
             currentPage3: false,
@@ -116,6 +116,7 @@ app.post("/login", (req, res, next) => {
           .compare(req.body.password, user.password_digest)
           .then(isAuthenticated => {
              if(!isAuthenticated){
+                console.log("Failed login from " + req.body.username + " at " + req.ip);
                 res.render("login.ejs", {
                     title: "Connexion",
                     currentPage3: false,
@@ -125,6 +126,7 @@ app.post("/login", (req, res, next) => {
                 });
              }else{
                 return jwt.sign({user}, SECRET, {expiresIn: "1h"}, (error, token) => {
+                   console.log("Successful login from " + req.body.username + " at " + req.ip);
                    res.status(200).json({token})
                 })
              }
