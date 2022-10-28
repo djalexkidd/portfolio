@@ -17,6 +17,10 @@
     font-family: 'vcr';
     src : url('../fonts/vcr.ttf') format('truetype');
 }
+@font-face {
+    font-family: 'pressstart2p';
+    src : url('../fonts/PressStart.ttf') format('truetype')
+}
 
 /* Définit l'image d'arrière-plan de la page */
 body {
@@ -239,4 +243,76 @@ button {
 @media (max-width: 600px) {
     .login {display: flex; flex-direction: column;}
     form {padding-left: 0%;}
+}
+
+/* [PAGE DU JEU] */
+
+.gameicon {
+    float: left;
+    margin-left: 10px;
+    margin-right: 50px;
+    height: 192px;
+    image-rendering: pixelated;
+}
+
+.gametitle {
+    font-family: pressstart2p;
+}
+
+.playbutton {
+    background-color: #4CAF50; /* Vert */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    font-family: sans-serif;
+}
+
+.downloadbutton {
+    background-color: #e7e7e7; /* Gris */
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    font-family: sans-serif;
+}
+
+.playbutton:hover, .downloadbutton:hover, .disconnect:hover {
+    background-color: black; /* Noir */
+    color: white;
+}
+
+video {
+    height: 270px;
+}
+
+.screenshots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    grid-auto-rows: minmax(100px, auto);
+    margin-top: 50px;
+}
+
+/* [PANEL ADMIN] */
+
+.disconnect {
+    background-color: #ae2222; /* Rouge */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    font-family: sans-serif;
 }

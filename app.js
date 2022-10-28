@@ -97,6 +97,21 @@ app.get("/projets", async (req, res) => {
   }
 );
 
+app.get("/jeu", async (req, res) => {
+    res.render("jeu.ejs", {
+        title: "Jeu",
+        currentPage3: false,
+        currentPage2: true,
+        currentPage1: false,
+        gamename: "KIYU'S REVENGE",
+        gameplay: "https://google.fr",
+        gamedownload: "https://google.fr",
+        gamesource: "https://google.fr",
+        gamedescription: 'Après avoir été maltraité pendant des années, Kiyu à décidé de prendre sa revanche contre Paulok et tout le YouTube Game. Un jeu de plateforme 2D "Die and Retry" pour toute la famille!'
+    });
+  }
+);
+
 // Page de contact
 app.get("/contact", (req, res) => {
     res.render("contact.ejs", {

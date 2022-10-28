@@ -1,0 +1,28 @@
+<%- include('partials/header') %>
+    <!-- Contenu de la page -->
+    <main class="myself">
+        <!-- Image de présentation -->
+        <img class="gameicon" src="images/gameicons/kiyu.png" alt="Îcone de Kiyu's Revenge" />
+        <!-- Paragraphe à droite de l'image -->
+        <h1 class="espace gametitle"><%= gamename %></h1>
+        <p><%= gamedescription %></p>
+
+        <section>
+            <a href="<%= gameplay %>" class="playbutton">Jouer sur navigateur</a>
+            <a href="<%= gamedownload %>" class="downloadbutton">Télécharger</a>
+            <a href="<%= gamesource %>" class="downloadbutton">Code Source</a>
+        </section>
+
+        <section class="centered">
+            <div class="screenshots">
+                <img src="images/screenshots/kiyu1.png">
+                <img src="images/screenshots/kiyu2.png">
+
+                <video autoplay loop controls>
+                    <source src="videos/kiyu.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+        
+    </main>
+<%- include('partials/footer') %>
