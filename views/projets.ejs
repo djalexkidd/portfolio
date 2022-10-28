@@ -9,7 +9,11 @@
         <!-- Grille des projets -->
         <div class="container">
             <% for(let i = 0; i < list.length; i++) { %>
+                <% if (list[i].is_game) { %>
+                <a class="nodecoration" href="projets/<%= list[i].id %>" target="_blank">
+                <% } else { %>
                 <a class="nodecoration" href="<%= list[i].git_url %>" target="_blank">
+                <% } %>
                     <div class="project">
                         <img class="projectimg" src="<%= list[i].image %>" alt="Capture d'écran de <%= list[i].name %>" />
                         <p class="projectname"><%= list[i].name %></p>

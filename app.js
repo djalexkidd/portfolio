@@ -40,6 +40,14 @@ function getProjects() {
     })
 };
 
+function getOneProject(demand) {
+    const result = knex.select().table('projets').where({ id: demand });
+
+    return result.then(function(rows){
+        return rows;
+    })
+};
+
 // Middleware pour vérifier si l'utilisateur est connecté
 function ensureAuthenticated(req, res, next) {
     const token = req.cookies.token
@@ -103,11 +111,7 @@ app.get("/projets/:id", async (req, res) => {
         currentPage3: false,
         currentPage2: true,
         currentPage1: false,
-        gamename: "KIYU'S REVENGE",
-        gameplay: "https://google.fr",
-        gamedownload: "https://google.fr",
-        gamesource: "https://google.fr",
-        gamedescription: 'Après avoir été maltraité pendant des années, Kiyu à décidé de prendre sa revanche contre Paulok et tout le YouTube Game. Un jeu de plateforme 2D "Die and Retry" pour toute la famille!'
+        game: await getOneProject(req.params.id)
     });
   }
 );

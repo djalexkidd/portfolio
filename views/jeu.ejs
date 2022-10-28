@@ -2,15 +2,15 @@
     <!-- Contenu de la page -->
     <main class="myself">
         <!-- Image de présentation -->
-        <img class="gameicon" src="images/gameicons/kiyu.png" alt="Îcone de Kiyu's Revenge" />
+        <img class="gameicon" src="<%= game[0].icon_url %>" alt="Îcone de Kiyu's Revenge" />
         <!-- Paragraphe à droite de l'image -->
-        <h1 class="espace gametitle"><%= gamename %></h1>
-        <p><%= gamedescription %></p>
+        <h1 class="espace gametitle"><%= game[0].name %></h1>
+        <p><%= game[0].description %></p>
 
         <section>
-            <a href="<%= gameplay %>" class="playbutton">Jouer sur navigateur</a>
-            <a href="<%= gamedownload %>" class="downloadbutton">Télécharger</a>
-            <a href="<%= gamesource %>" class="downloadbutton">Code Source</a>
+            <a href="<%= game[0].play_url %>" class="playbutton">Jouer sur navigateur</a>
+            <a href="<%= game[0].download_url %>" class="downloadbutton">Télécharger</a>
+            <a href="<%= game[0].git_url %>" class="downloadbutton">Code Source</a>
         </section>
 
         <section class="centered">

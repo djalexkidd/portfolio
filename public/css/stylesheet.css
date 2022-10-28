@@ -136,6 +136,7 @@ footer {
 /* Bordures pour les éléments de la grille */
 .project {
     border: solid;
+    width: 250px;
 }
 
 /* Règle la taille de l'image */
