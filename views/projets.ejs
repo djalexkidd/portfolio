@@ -10,7 +10,7 @@
         <div class="container">
             <% for(let i = 0; i < list.length; i++) { %>
                 <% if (list[i].is_game) { %>
-                <a class="nodecoration" href="projets/<%= list[i].id %>" target="_blank">
+                <a class="nodecoration" href="projets/<%= list[i].id %>">
                 <% } else { %>
                 <a class="nodecoration" href="<%= list[i].git_url %>" target="_blank">
                 <% } %>

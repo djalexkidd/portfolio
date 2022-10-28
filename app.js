@@ -40,7 +40,7 @@ function getProjects() {
     })
 };
 
-function getOneProject(demand) {
+function getGame(demand) {
     const result = knex.select().table('projets').where({ id: demand });
 
     return result.then(function(rows){
@@ -106,12 +106,13 @@ app.get("/projets", async (req, res) => {
 );
 
 app.get("/projets/:id", async (req, res) => {
+    const result = await getGame(req.params.id)
     res.render("jeu.ejs", {
-        title: "Jeu",
+        title: result[0].name,
         currentPage3: false,
         currentPage2: true,
         currentPage1: false,
-        game: await getOneProject(req.params.id)
+        game: result
     });
   }
 );
