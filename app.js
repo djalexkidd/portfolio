@@ -97,7 +97,7 @@ app.get("/projets", async (req, res) => {
   }
 );
 
-app.get("/jeu", async (req, res) => {
+app.get("/projets/:id", async (req, res) => {
     res.render("jeu.ejs", {
         title: "Jeu",
         currentPage3: false,
