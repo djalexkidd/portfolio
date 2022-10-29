@@ -19,6 +19,35 @@
         <label for="3">Lien du code source:</label>
         <input name="git_url" id="3" required>
         <br>
+        <input type="radio" name="isgame" id="4" value="app" required>
+        <label for="4">Application</label>
+        <br>
+        <input type="radio" name="isgame" id="5" value="game">
+        <label for="5">Jeu</p></label>
+        <br>
+        <div class="newgame">
+            <label for="6">Description:</label>
+            <input name="description" id="6" required>
+            <br>
+            <label for="7">Lien du jeu:</label>
+            <input name="gamelink" id="7">
+            <br>
+            <label for="8">Lien de téléchargement:</label>
+            <input name="description" id="8">
+            <br>
+            <label for="9">URL de l'icône:</label>
+            <input name="description" id="9">
+            <br>
+            <label for="10">URL de la capture d'écran #1:</label>
+            <input name="description" id="10">
+            <br>
+            <label for="11">URL de la capture d'écran #2:</label>
+            <input name="description" id="11">
+            <br>
+            <label for="12">URL de la capture d'écran #3:</label>
+            <input name="description" id="12">
+        </div>
+        <br>
         <input class="playbutton" type="submit" value="Créer" />
     </form>
 
@@ -29,4 +58,6 @@
     </div>
     
 </main>
+
+<script type="text/javascript" src="js/addgame.js"></script>
 <%- include('partials/footer') %>
