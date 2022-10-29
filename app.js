@@ -170,10 +170,24 @@ app.get('*', (req, res) => {
 
 // Création d'un nouveau projet
 app.post("/newproject", ensureAuthenticated, (req, res, next) => {
+    if (req.body.isgame == "game") {
+        knex("jeux").insert({
+            name: req.body.name,
+            description: req.body.description,
+            play_url: req.body.gamelink,
+            download_url: req.body.gamedownload,
+            icon_url: req.body.gameimage,
+            screenshot1_url: req.body.gamescreen1,
+            screenshot2_url: req.body.gamescreen2,
+            screenshot3_url: req.body.gamescreen3
+         }).then();
+    }
+
     knex("projets").insert({
        name: req.body.name,
        image: req.body.image,
-       git_url: req.body.git_url
+       git_url: req.body.git_url,
+       is_game: (req.body.isgame === "game" ? "1" : "2")
     })
     .then(() => {
         res.render("admin.ejs", {
