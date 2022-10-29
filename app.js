@@ -32,6 +32,8 @@ const knex = require('knex')({
     }
 });
 
+var status = "";
+
 function getProjects() {
     const result = knex.select().table('projets')
 
@@ -147,14 +149,17 @@ app.get("/login", (req, res) => {
 );
 
 // Page d'administration
-app.get('/admin', ensureAuthenticated, function(req, res) {
+app.get('/admin', ensureAuthenticated, async function(req, res) {
     res.render("admin.ejs", {
         title: "Administration",
         currentPage3: false,
         currentPage2: false,
         currentPage1: false,
-        message: ""
+        message: status,
+        list: await getProjects()
     });
+
+    status = ""
 });
 
 // Déconnexion
@@ -190,15 +195,19 @@ app.post("/newproject", ensureAuthenticated, (req, res, next) => {
        is_game: (req.body.isgame === "game" ? "1" : "2")
     })
     .then(() => {
-        res.render("admin.ejs", {
-            title: "Administration",
-            currentPage3: false,
-            currentPage2: false,
-            currentPage1: false,
-            message: req.body.name + " a été ajouté avec succès."
-        });
+        status = req.body.name + " a été ajouté avec succès.";
+        res.redirect("/admin");
     })
     .catch(error => next(error))
+});
+
+// Suppression d'un projet
+app.post("/delproject", ensureAuthenticated, (req, res, next) => {
+    status = "Le projet a été supprimé avec succès.";
+    knex("projets")
+  .where({ id: req.body.projectid })
+  .del()
+  .then(res.redirect("/admin"));
 });
 
 // Route pour la connexion

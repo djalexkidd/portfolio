@@ -27,7 +27,7 @@
         <br>
         <div class="newgame">
             <label for="6">Description:</label>
-            <input name="description" id="6" required>
+            <input name="description" id="6">
             <br>
             <label for="7">Lien du jeu:</label>
             <input name="gamelink" id="7">
@@ -49,6 +49,22 @@
         </div>
         <br>
         <input class="playbutton" type="submit" value="Créer" />
+    </form>
+
+    <h2 class="espace">Supprimer un projet</h2>
+
+    <form action="delproject" method="post">
+
+        <label for="13">Sélectionner:</label>
+
+        <select name="projectid" id="13">
+            <% for(let i = 0; i < list.length; i++) { %>
+            <option value="<%= list[i].id %>"><%= list[i].name %></option>
+            <% } %>
+        </select>
+
+        <input class="disconnect" type="submit" value="Supprimer" onclick="return confirm('⚠️ Supprimer ce projet ?')" />
+
     </form>
 
     <p><%= message %></p>
