@@ -32,7 +32,8 @@ const knex = require('knex')({
     }
 });
 
-var status = "";
+var statusAdmin = "";
+var statusLogin = "";
 
 function getProjects() {
     const result = knex.select().table('projets')
@@ -70,14 +71,8 @@ async function verifyCaptcha(req, res, next) {
     const body = await reponse.json()
 
     if (body.success !== undefined && !body.success) {
-        res.render("login.ejs", {
-            title: "Connexion",
-            currentPage3: false,
-            currentPage2: false,
-            currentPage1: false,
-            message: "Le CAPTCHA n'a pas été validé.",
-            captchaSite: process.env.CAPTCHA_SITE_KEY
-        });
+        statusLogin = "Le CAPTCHA n'a pas été validé.";
+        res.redirect("/login");
     } else {
         next();
     }
@@ -142,11 +137,12 @@ app.get("/login", (req, res) => {
         currentPage3: false,
         currentPage2: false,
         currentPage1: false,
-        message: "",
+        message: statusLogin,
         captchaSite: process.env.CAPTCHA_SITE_KEY
     });
-  }
-);
+
+    statusLogin = "";
+});
 
 // Page d'administration
 app.get('/admin', ensureAuthenticated, async function(req, res) {
@@ -155,11 +151,11 @@ app.get('/admin', ensureAuthenticated, async function(req, res) {
         currentPage3: false,
         currentPage2: false,
         currentPage1: false,
-        message: status,
+        message: statusAdmin,
         list: await getProjects()
     });
 
-    status = ""
+    statusAdmin = "";
 });
 
 // Déconnexion
@@ -195,7 +191,7 @@ app.post("/newproject", ensureAuthenticated, (req, res, next) => {
        is_game: (req.body.isgame === "game" ? "1" : "2")
     })
     .then(() => {
-        status = req.body.name + " a été ajouté avec succès.";
+        statusAdmin = req.body.name + " a été ajouté avec succès.";
         res.redirect("/admin");
     })
     .catch(error => next(error))
@@ -203,7 +199,7 @@ app.post("/newproject", ensureAuthenticated, (req, res, next) => {
 
 // Suppression d'un projet
 app.post("/delproject", ensureAuthenticated, (req, res, next) => {
-    status = "Le projet a été supprimé avec succès.";
+    statusAdmin = "Le projet a été supprimé avec succès.";
     knex("projets")
   .where({ id: req.body.projectid })
   .del()
@@ -218,28 +214,16 @@ app.post("/login", verifyCaptcha, (req, res, next) => {
     .then(user => {
        if(!user){
         console.log("Failed login from " + req.body.username + " at " + req.ip);
-        res.render("login.ejs", {
-            title: "Connexion",
-            currentPage3: false,
-            currentPage2: false,
-            currentPage1: false,
-            message: "Le nom d'utilisateur ou le mot de passe est incorrect.",
-            captchaSite: process.env.CAPTCHA_SITE_KEY
-        });
+        statusLogin = "Le nom d'utilisateur ou le mot de passe est incorrect.";
+        res.redirect("/login");
        }else{
           return bcrypt
           .compare(req.body.password, user.password_digest)
           .then(isAuthenticated => {
              if(!isAuthenticated){
                 console.log("Failed login from " + req.body.username + " at " + req.ip);
-                res.render("login.ejs", {
-                    title: "Connexion",
-                    currentPage3: false,
-                    currentPage2: false,
-                    currentPage1: false,
-                    message: "Le nom d'utilisateur ou le mot de passe est incorrect.",
-                    captchaSite: process.env.CAPTCHA_SITE_KEY
-                });
+                statusLogin = "Le nom d'utilisateur ou le mot de passe est incorrect.";
+                res.redirect("/login");
              }else{
                 return jwt.sign({user}, SECRET, {expiresIn: "1h"}, (error, token) => {
                    console.log("Successful login from " + req.body.username + " at " + req.ip);
