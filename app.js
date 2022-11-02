@@ -166,8 +166,13 @@ app.get('/logout', (req, res) => {
 
 app.get('*', (req, res) => {
     res.status(404);
-    res.send("Page introuvable");
-})
+    res.render("404.ejs", {
+        title: "Bruh",
+        currentPage3: false,
+        currentPage2: false,
+        currentPage1: false,
+    });
+});
 
 // Création d'un nouveau projet
 app.post("/newproject", ensureAuthenticated, (req, res, next) => {
