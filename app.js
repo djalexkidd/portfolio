@@ -36,7 +36,7 @@ var statusAdmin = "";
 var statusLogin = "";
 
 function getProjects() {
-    const result = knex.select().table('projets')
+    const result = knex.select().table('projets').orderBy("is_game", "desc");
 
     return result.then(function(rows){
         return rows;
